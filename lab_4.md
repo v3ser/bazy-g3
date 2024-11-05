@@ -72,6 +72,7 @@ UPDATE `postac` SET `funkcja` = 'kapitan' WHERE (`nazwa` = 'Bjorn');
 ```
 6.
 ```
+ALTER TABLE postac ADD FOREIGN KEY(id_postaci) REFERENCES statek(nazwa_statku);
 ```
 7.
 ```
