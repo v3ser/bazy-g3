@@ -1,4 +1,4 @@
-# Zadania lab 4 
+# Zadania lab 3 
 
 ## Zadanie 3
 1. 
