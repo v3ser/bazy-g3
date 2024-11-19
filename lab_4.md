@@ -59,3 +59,29 @@ insert into marynarz select * from postac where statek is not null;
 ```
 c)
 ```
+```
+
+## Zadanie 5
+
+a) 
+```
+ALTER TABLE postac DROP FOREIGN KEY id_postaci;
+```
+b)
+```
+DELETE FROM postac WHERE nazwa = 'Wiking1'
+```
+c)
+```
+```
+d)
+```
+DROP TABLE statek;
+```
+e)
+```
+CREATE TABLE zwierz(
+	id INT PRIMARY KEY AUTO INCREMENT,
+  nazwa VARCHAR(50),
+  wiek INT);
+```
