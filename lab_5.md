@@ -29,6 +29,7 @@ Select idZasobu, ilosc from ekwipunek where idKreatury in (1, 3, 5);
 ## Zadanie 2
 1.
 ```
+Select * from kreatura where rodzaj is not "wiedzma" and udzwig > 50;
 ```
 2.
 ```
@@ -74,12 +75,16 @@ SELECT concat("Kreatura z id " , idKreatury , "to " , nazwa) FROM kreatura WHERE
 
 3.
 ```
+SELECT * SUM(ilosc * waga) AS waga FROM zasob
+WHERE dataPozyskania BETWEEN 2000 AND 2007;
 
 ```
 
 ## Zadanie 5
 1.
 ```
+SELECT rodzaj, waga * 0.3 AS masa_odpadow, waga * 0.7 AS masa_wlasciwego_jedzenia 
+FROM zasob WHERE rodzaj = "jedzenie";
 ```
 
 2.
