@@ -51,6 +51,11 @@ from kreatura k, ekwipunek e  where e.idKreatury=k.idKreatury;
 ```
 2.
 ```
+SELECT k.nazwa AS nazwa_kreatury, GROUP_CONCAT(z.nazwa) AS zasoby
+FROM kreatura k
+JOIN ekwipunek e ON k.idKreatury= e.idKreatury
+JOIN zasob z ON e.idZasobu = z.idZasobu
+GROUP BY k.nazwa;
 ```
 3.
 ```
@@ -61,16 +66,40 @@ left join ekwipunek e on k.idKreatury=e.idKreatury where e.idKreatury is null;
 ## Zadanie 4
 1.
 ```
+Select k.nazwa, z.nazwa FROM kreatura k NATURAL JOIN zasob z 
+WHERE k.rodzaj = "wiking" AND k.dataUr BETWEEN '1670-01-01' AND '1679-12-31';
 ```
 2.
 ```
-
+SELECT k.nazwa, k.dataUr FROM kreatura k JOIN ekwipunek e
+ON k.idKreatury = e.idKreatury JOIN zasob z ON e.idZasobu = z.idZasobu
+WHERE z.rodzaj = "jedzenie" ORDER by k.dataUr DESC limit 5;
 ```
 3.
 ```
 select k1.idKreatury, k2.idKreatury, k1.nazwa, k2.nazwa from kreatura k1
 inner join kreatura k2 on k1.idKreatury=k2.idKreatury - 5;
 ```
+##Zadanie 5
+1.
+```
+SELECT k.rodzaj, AVG(z.waga) FROM kreatura k JOIN ekwipunek e ON k.idKreatury = e.idKreatury
+JOIN zasob z ON e.idZasobu = z.idZasobu WHERE k.rodzaj NOT IN ('małpa', 'wąż') 
+AND(
+	SELECT SUM(ekwipunek.ilosc)
+    FROM ekwipunek
+    WHERE e.idKreatury = idKreatury
+) < 30 group by k.rodzaj;
+```
+2.
+```
+```
+
+
+
+
+
+
 
 
 
