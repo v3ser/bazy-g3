@@ -80,7 +80,8 @@ WHERE z.rodzaj = "jedzenie" ORDER by k.dataUr DESC limit 5;
 select k1.idKreatury, k2.idKreatury, k1.nazwa, k2.nazwa from kreatura k1
 inner join kreatura k2 on k1.idKreatury=k2.idKreatury - 5;
 ```
-##Zadanie 5
+## Zadanie 5
+
 1.
 ```
 SELECT k.rodzaj, AVG(z.waga) FROM kreatura k JOIN ekwipunek e ON k.idKreatury = e.idKreatury
