@@ -25,6 +25,11 @@ GROUP BY w.nazwa;
 ## Zadanie 2
 1.
 ```
+select w.nazwa, count(k.nazwa),group_concat(k.nazwa separator '|') as liczba_uczestnikow 
+from wyprawa w 
+inner join uczestnicy u on w.id_wyprawy=u.id_wyprawy
+inner join kreatura k on k.idKreatury=u.id_uczestnika
+group by w.id_wyprawy;
 ```
 2.
 ```
@@ -32,9 +37,17 @@ GROUP BY w.nazwa;
 ## Zadanie 3
 1.
 ```
+select s.nazwa, ifnull(count(ew.sektor), 'brak'), s.id_sektora
+from etapy_wyprawy ew
+right join sektor s on ew.sektor=s.id_sektora
+group by s.id_sektora;
 ```
 2.
 ```
+select s.nazwa, if(count(ew.sektor) = 0, 'nie był odwiedzany', count(ew.sektor)) as ile_odwiedzin,s.id_sektora
+from etapy_wyprawy ew
+right join sektor s on ew.sektor=s.id_sektora
+group by s.id_sektora;
 ```
 ## Zadanie 4
 1.
