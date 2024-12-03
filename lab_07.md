@@ -44,6 +44,7 @@ GROUP BY w.nazwa;
 ```
 ```
 ## Zadanie 5
+1. 
 ```
 ```
 
