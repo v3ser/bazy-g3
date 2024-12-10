@@ -1,4 +1,4 @@
-# Zadania lab_7
+# Zadania lab_8
 ## Zadanie 1
 1.
 ```
