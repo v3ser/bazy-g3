@@ -34,6 +34,7 @@ WHERE DATEDIFF(CURRENT_DATE, data_zatrudnienia) >= 1825;
 ```
 ## Zadanie 9
 ```
+SELECT z.id_zamowienia AS numer_zamowienia, SUM(pz.ilosc * pz.cena) AS wartosc_zamowienia FROM zamowienie z INNER JOIN pozycja_zamowienia pz ON z.id_zamowienia = pz.zamowienie WHERE z.data_zamowienia BETWEEN '2017-01-01' AND '2017-03-31' GROUP BY z.id_zamowienia;
 ```
 ## Zadanie 10
 ```
@@ -49,25 +50,32 @@ SELECT k.pelna_nazwa, SUM(pz.ilosc * pz.cena) AS wartosc_zamowienia FROM zamowie
 ```
 ## Zadanie 13
 ```
+SELECT EXTRACT(YEAR FROM data_zamowienia) AS rok, SUM(pz.ilosc * pz.cena) AS przychod FROM zamowienie z INNER JOIN pozycja_zamowienia pz ON z.id_zamowienia = pz.zamowienie GROUP BY rok ORDER BY przychod DESC;
 ```
 ## Zadanie 14
 ```
+SELECT SUM(pz.ilosc * pz.cena) AS suma_anulowanych_zamowien FROM pozycja_zamowienia pz INNER JOIN zamowienie z ON pz.zamowienie = z.id_zamowienia WHERE z.status_zamowienia = 'anulowane';
 ```
 ## Zadanie 15
 ```
+SELECT ak.miejscowosc, COUNT(z.id_zamowienia) AS liczba_zamowien, SUM(pz.ilosc * pz.cena) AS wartosc_zamowien FROM adres_klienta ak INNER JOIN klient k ON ak.klient = k.id_klienta INNER JOIN zamowienie z ON k.id_klienta = z.klient INNER JOIN pozycja_zamowienia pz ON z.id_zamowienia = pz.zamowienie GROUP BY ak.miejscowosc;
 ```
 ## Zadanie 16
 ```
+SELECT SUM(pz.ilosc * pz.cena) AS dochod FROM pozycja_zamowienia pz INNER JOIN zamowienie z ON pz.zamowienie = z.id_zamowienia INNER JOIN status_zamowienia sz ON sz.id_statusu_zamowienia = z.status_zamowienia WHERE sz.nazwa_statusu_zamowienia = 'zrealizowane';
 ```
 ## Zadanie 17
 ```
+SELECT EXTRACT(YEAR FROM z.data_zamowienia) AS rok, SUM(pz.ilosc * pz.cena) - SUM(pz.ilosc * t.cena_zakupu) AS dochod FROM pozycja_zamowienia pz INNER JOIN zamowienie z ON pz.zamowienie = z.id_zamowienia INNER JOIN towar t ON pz.towar = t.id_towaru GROUP BY EXTRACT(YEAR FROM z.data_zamowienia) ORDER BY rok;
 ```
 ## Zadanie 18
 ```
+SELECT k.nazwa_kategori, SUM(sm.ilosc) AS ilosc_w_magazynie FROM stan_magazynowy sm INNER JOIN towar t ON sm.towar = t.id_towaru INNER JOIN kategoria k ON t.kategoria = k.id_kategori GROUP BY k.nazwa_kategori;
 ```
 ## Zadanie 19
 ```
 ```
 ## Zadanie 20
 ```
+SELECT imie, nazwisko, (DATEDIFF(CURDATE(), data_zatrudnienia) DIV 30) * pensja AS calkowity_koszt FROM pracownik;
 ```
